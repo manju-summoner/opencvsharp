@@ -139,7 +139,7 @@ static partial class NativeMethods
     public static extern ExceptionStatus video_TrackerGOTURN_create1(out IntPtr returnValue);
 
     [Pure, DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern unsafe ExceptionStatus video_TrackerGOTURN_create2(TrackerGOTURN.Params* parameters, out IntPtr returnValue);
+    public static extern unsafe ExceptionStatus video_TrackerGOTURN_create2(ref TrackerGOTURN.Params parameters, out IntPtr returnValue);
 
     [Pure, DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern ExceptionStatus video_Ptr_TrackerGOTURN_delete(IntPtr ptr);
@@ -153,7 +153,7 @@ static partial class NativeMethods
     public static extern ExceptionStatus video_TrackerDaSiamRPN_create1(out IntPtr returnValue);
 
     [Pure, DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern unsafe ExceptionStatus video_TrackerDaSiamRPN_create2(TrackerDaSiamRPN.Params* parameters, out IntPtr returnValue);
+    public static extern unsafe ExceptionStatus video_TrackerDaSiamRPN_create2(ref TrackerDaSiamRPN.Params parameters, out IntPtr returnValue);
 
     [Pure, DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern ExceptionStatus video_Ptr_TrackerDaSiamRPN_delete(IntPtr ptr);
@@ -167,7 +167,7 @@ static partial class NativeMethods
     public static extern ExceptionStatus video_TrackerNano_create1(out IntPtr returnValue);
 
     [Pure, DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern unsafe ExceptionStatus video_TrackerNano_create2(TrackerNano.Params* parameters, out IntPtr returnValue);
+    public static extern unsafe ExceptionStatus video_TrackerNano_create2(ref TrackerNano.Params parameters, out IntPtr returnValue);
 
     [Pure, DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern ExceptionStatus video_Ptr_TrackerNano_delete(IntPtr ptr);
@@ -181,7 +181,7 @@ static partial class NativeMethods
     public static extern ExceptionStatus video_TrackerVit_create1(out IntPtr returnValue);
 
     [Pure, DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-    public static extern unsafe ExceptionStatus video_TrackerVit_create2(TrackerVit.Params* parameters, out IntPtr returnValue);
+    public static extern unsafe ExceptionStatus video_TrackerVit_create2(ref TrackerVit.Params parameters, out IntPtr returnValue);
 
     [Pure, DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern ExceptionStatus video_Ptr_TrackerVit_delete(IntPtr ptr);

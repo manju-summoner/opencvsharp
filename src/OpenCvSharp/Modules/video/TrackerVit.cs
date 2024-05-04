@@ -33,7 +33,6 @@ public class TrackerVit : Tracker
         return new TrackerVit(p);
     }
 
-    // TODO
     /// <summary>
     /// Constructor
     /// </summary>
@@ -44,7 +43,7 @@ public class TrackerVit : Tracker
         unsafe
         {
             NativeMethods.HandleException(
-                NativeMethods.video_TrackerVit_create2(&parameters, out var p));
+                NativeMethods.video_TrackerVit_create2(ref parameters, out var p));
             return new TrackerVit(p);
         }
     }
@@ -78,6 +77,17 @@ public class TrackerVit : Tracker
     [StructLayout(LayoutKind.Sequential)]
     public struct Params
     {
+#pragma warning disable 1591
+        [MarshalAs(UnmanagedType.LPStr)]
+        public string Net = "vitTracker.onnx";
+        public int Backend = 0;
+        public int Target = 0;
+        public Scalar MeanValue = new Scalar(0.485, 0.456, 0.406);
+        public Scalar StdValue = new Scalar(0.229, 0.224, 0.225);
 
+        public Params()
+        {
+
+        }
     }
 }

@@ -33,7 +33,6 @@ public class TrackerDaSiamRPN : Tracker
         return new TrackerDaSiamRPN(p);
     }
 
-    // TODO
     /// <summary>
     /// Constructor
     /// </summary>
@@ -44,7 +43,7 @@ public class TrackerDaSiamRPN : Tracker
         unsafe
         {
             NativeMethods.HandleException(
-                NativeMethods.video_TrackerDaSiamRPN_create2(&parameters, out var p));
+                NativeMethods.video_TrackerDaSiamRPN_create2(ref parameters, out var p));
             return new TrackerDaSiamRPN(p);
         }
     }
@@ -78,6 +77,19 @@ public class TrackerDaSiamRPN : Tracker
     [StructLayout(LayoutKind.Sequential)]
     public struct Params
     {
+#pragma warning disable 1591
+        [MarshalAs(UnmanagedType.LPStr)]
+        public string Model = "dasiamrpn_model.onnx";
+        [MarshalAs(UnmanagedType.LPStr)]
+        public string KernelCls1 = "dasiamrpn_kernel_cls1.onnx";
+        [MarshalAs(UnmanagedType.LPStr)]
+        public string KernelR1 = "dasiamrpn_kernel_r1.onnx";
+        public int Backend = 0;
+        public int Target = 0;
 
+        public Params()
+        {
+
+        }
     }
 }

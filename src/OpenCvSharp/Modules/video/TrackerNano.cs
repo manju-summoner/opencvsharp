@@ -33,7 +33,6 @@ public class TrackerNano : Tracker
         return new TrackerNano(p);
     }
 
-    // TODO
     /// <summary>
     /// Constructor
     /// </summary>
@@ -44,7 +43,7 @@ public class TrackerNano : Tracker
         unsafe
         {
             NativeMethods.HandleException(
-                NativeMethods.video_TrackerNano_create2(&parameters, out var p));
+                NativeMethods.video_TrackerNano_create2(ref parameters, out var p));
             return new TrackerNano(p);
         }
     }
@@ -78,6 +77,17 @@ public class TrackerNano : Tracker
     [StructLayout(LayoutKind.Sequential)]
     public struct Params
     {
+#pragma warning disable 1591
+        [MarshalAs(UnmanagedType.LPStr)]
+        public string Backbone = "backbone.onnx";
+        [MarshalAs(UnmanagedType.LPStr)]
+        public string NeckHead = "neckhead.onnx";
+        public int Backend = 0;
+        public int Target = 0;
 
+        public Params()
+        {
+
+        }
     }
 }

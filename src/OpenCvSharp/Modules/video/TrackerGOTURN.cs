@@ -44,7 +44,6 @@ public class TrackerGOTURN : Tracker
         return new TrackerGOTURN(p);
     }
 
-    // TODO
     /// <summary>
     /// Constructor
     /// </summary>
@@ -55,7 +54,7 @@ public class TrackerGOTURN : Tracker
         unsafe
         {
             NativeMethods.HandleException(
-                NativeMethods.video_TrackerGOTURN_create2(&parameters, out var p));
+                NativeMethods.video_TrackerGOTURN_create2(ref parameters, out var p));
             return new TrackerGOTURN(p);
         }
     }
@@ -89,5 +88,16 @@ public class TrackerGOTURN : Tracker
     [StructLayout(LayoutKind.Sequential)]
     public struct Params
     {
+#pragma warning disable 1591
+        [MarshalAs(UnmanagedType.LPStr)]
+        public string ModelTxt = "goturn.prototxt";
+
+        [MarshalAs(UnmanagedType.LPStr)]
+        public string ModelBin = "goturn.caffemodel";
+
+        public Params()
+        {
+
+        }
     }
 }

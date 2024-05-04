@@ -303,6 +303,20 @@ CVAPI(ExceptionStatus) video_Ptr_TrackerMIL_get(cv::Ptr<cv::TrackerMIL>* ptr, cv
 
 #pragma region TrackerGOTURN
 
+CV_EXTERN_C struct tracker_TrackerGOTURN_Params
+{
+    char* modelTxt;
+    char* modelBin;
+};
+
+cv::TrackerGOTURN::Params tracking_TrackerGOTURN_Params_ToCpp(tracker_TrackerGOTURN_Params* params)
+{
+	cv::TrackerGOTURN::Params p;
+	p.modelTxt = std::string(params->modelTxt);
+	p.modelBin = std::string(params->modelBin);
+	return p;
+}
+
 CVAPI(ExceptionStatus) video_TrackerGOTURN_create1(cv::Ptr<cv::TrackerGOTURN>** returnValue)
 {
     BEGIN_WRAP
@@ -310,11 +324,13 @@ CVAPI(ExceptionStatus) video_TrackerGOTURN_create1(cv::Ptr<cv::TrackerGOTURN>** 
     *returnValue = clone(p);
     END_WRAP
 }
-CVAPI(ExceptionStatus) video_TrackerGOTURN_create2(cv::TrackerGOTURN::Params* parameters, cv::Ptr<cv::TrackerGOTURN>** returnValue)
+
+CVAPI(ExceptionStatus) video_TrackerGOTURN_create2(tracker_TrackerGOTURN_Params* parameters, cv::Ptr<cv::TrackerGOTURN>** returnValue)
 {
     BEGIN_WRAP
-    const auto p = cv::TrackerGOTURN::create(*parameters);
-    *returnValue = clone(p);
+	const auto p = tracking_TrackerGOTURN_Params_ToCpp(parameters);
+    const auto obj = cv::TrackerGOTURN::create(p);
+    *returnValue = clone(obj);
     END_WRAP
 }
 
@@ -335,18 +351,41 @@ CVAPI(ExceptionStatus) video_Ptr_TrackerGOTURN_get(cv::Ptr<cv::TrackerGOTURN>* p
 #pragma endregion
 
 #pragma region TrackerDaSiamRPN
+
+CV_EXTERN_C struct tracker_TrackerDaSiamRPN_Params
+{
+    char* model;
+    char* kernel_cls1;
+    char* kernel_r1;
+    int backend;
+    int target;
+};
+
+cv::TrackerDaSiamRPN::Params tracking_TrackerDaSiamRPN_Params_ToCpp(tracker_TrackerDaSiamRPN_Params* params)
+{
+	cv::TrackerDaSiamRPN::Params p;
+	p.model = std::string(params->model);
+	p.kernel_cls1 = std::string(params->kernel_cls1);
+	p.kernel_r1 = std::string(params->kernel_r1);
+	p.backend = params->backend;
+	p.target = params->target;
+	return p;
+}
+
 CVAPI(ExceptionStatus) video_TrackerDaSiamRPN_create1(cv::Ptr<cv::TrackerDaSiamRPN>** returnValue)
 {
     BEGIN_WRAP
-        const auto p = cv::TrackerDaSiamRPN::create();
+    const auto p = cv::TrackerDaSiamRPN::create();
     *returnValue = clone(p);
     END_WRAP
 }
-CVAPI(ExceptionStatus) video_TrackerDaSiamRPN_create2(cv::TrackerDaSiamRPN::Params* parameters, cv::Ptr<cv::TrackerDaSiamRPN>** returnValue)
+
+CVAPI(ExceptionStatus) video_TrackerDaSiamRPN_create2(tracker_TrackerDaSiamRPN_Params* parameters, cv::Ptr<cv::TrackerDaSiamRPN>** returnValue)
 {
     BEGIN_WRAP
-        const auto p = cv::TrackerDaSiamRPN::create(*parameters);
-    *returnValue = clone(p);
+    const auto p = tracking_TrackerDaSiamRPN_Params_ToCpp(parameters);
+    const auto obj = cv::TrackerDaSiamRPN::create(p);
+    *returnValue = clone(obj);
     END_WRAP
 }
 
@@ -366,18 +405,39 @@ CVAPI(ExceptionStatus) video_Ptr_TrackerDaSiamRPN_get(cv::Ptr<cv::TrackerDaSiamR
 #pragma endregion
 
 #pragma region TrackerNano
+
+CV_EXTERN_C struct tracker_TrackerNano_Params 
+{
+    char* backbone;
+	char* neckhead;
+    int backend;
+    int target;
+};
+
+cv::TrackerNano::Params tracking_TrackerNano_Params_ToCpp(tracker_TrackerNano_Params* params)
+{
+	cv::TrackerNano::Params p;
+	p.backbone = std::string(params->backbone);
+	p.neckhead = std::string(params->neckhead);
+	p.backend = params->backend;
+	p.target = params->target;
+	return p;
+}
+
 CVAPI(ExceptionStatus) video_TrackerNano_create1(cv::Ptr<cv::TrackerNano>** returnValue)
 {
     BEGIN_WRAP
-        const auto p = cv::TrackerNano::create();
+    const auto p = cv::TrackerNano::create();
     *returnValue = clone(p);
     END_WRAP
 }
-CVAPI(ExceptionStatus) video_TrackerNano_create2(cv::TrackerNano::Params* parameters, cv::Ptr<cv::TrackerNano>** returnValue)
+
+CVAPI(ExceptionStatus) video_TrackerNano_create2(tracker_TrackerNano_Params* parameters, cv::Ptr<cv::TrackerNano>** returnValue)
 {
     BEGIN_WRAP
-        const auto p = cv::TrackerNano::create(*parameters);
-    *returnValue = clone(p);
+    const auto p = tracking_TrackerNano_Params_ToCpp(parameters);
+    const auto obj = cv::TrackerNano::create(p);
+    *returnValue = clone(obj);
     END_WRAP
 }
 
@@ -397,18 +457,41 @@ CVAPI(ExceptionStatus) video_Ptr_TrackerNano_get(cv::Ptr<cv::TrackerNano>* ptr, 
 #pragma endregion
 
 #pragma region TrackerVit
+
+CV_EXTERN_C struct tracker_TrackerVit_Params
+{
+    char* net;
+    int backend;
+	int target;
+    cv::Scalar meanvalue;
+    cv::Scalar stdvalue;
+};
+
+cv::TrackerVit::Params tracker_TrackerVit_Params_ToCpp(tracker_TrackerVit_Params* params)
+{
+	cv::TrackerVit::Params p;
+	p.net = std::string(params->net);
+	p.backend = params->backend;
+	p.target = params->target;
+	p.meanvalue = params->meanvalue;
+	p.stdvalue = params->stdvalue;
+	return p;
+}
+
 CVAPI(ExceptionStatus) video_TrackerVit_create1(cv::Ptr<cv::TrackerVit>** returnValue)
 {
     BEGIN_WRAP
-        const auto p = cv::TrackerVit::create();
+    const auto p = cv::TrackerVit::create();
     *returnValue = clone(p);
     END_WRAP
 }
-CVAPI(ExceptionStatus) video_TrackerVit_create2(cv::TrackerVit::Params* parameters, cv::Ptr<cv::TrackerVit>** returnValue)
+
+CVAPI(ExceptionStatus) video_TrackerVit_create2(tracker_TrackerVit_Params* parameters, cv::Ptr<cv::TrackerVit>** returnValue)
 {
     BEGIN_WRAP
-        const auto p = cv::TrackerVit::create(*parameters);
-    *returnValue = clone(p);
+    const auto p = tracker_TrackerVit_Params_ToCpp(parameters);
+    const auto obj = cv::TrackerVit::create(p);
+    *returnValue = clone(obj);
     END_WRAP
 }
 
@@ -425,6 +508,7 @@ CVAPI(ExceptionStatus) video_Ptr_TrackerVit_get(cv::Ptr<cv::TrackerVit>* ptr, cv
         * returnValue = ptr->get();
     END_WRAP
 }
+
 #pragma endregion
 
 // TODO
