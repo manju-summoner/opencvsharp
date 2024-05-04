@@ -147,6 +147,20 @@ static partial class NativeMethods
     [Pure, DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
     public static extern ExceptionStatus video_Ptr_TrackerGOTURN_get(IntPtr ptr, out IntPtr returnValue);
 
+    // TrackerDaSiamRPN
+
+    [Pure, DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+    public static extern ExceptionStatus video_TrackerDaSiamRPN_create1(out IntPtr returnValue);
+
+    [Pure, DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+    public static extern unsafe ExceptionStatus video_TrackerDaSiamRPN_create2(TrackerDaSiamRPN.Params* parameters, out IntPtr returnValue);
+
+    [Pure, DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+    public static extern ExceptionStatus video_Ptr_TrackerDaSiamRPN_delete(IntPtr ptr);
+
+    [Pure, DllImport(DllExtern, CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+    public static extern ExceptionStatus video_Ptr_TrackerDaSiamRPN_get(IntPtr ptr, out IntPtr returnValue);
+
     #endregion
 
     // TODO
