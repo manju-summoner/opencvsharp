@@ -365,6 +365,37 @@ CVAPI(ExceptionStatus) video_Ptr_TrackerDaSiamRPN_get(cv::Ptr<cv::TrackerDaSiamR
 }
 #pragma endregion
 
+#pragma region TrackerNano
+CVAPI(ExceptionStatus) video_TrackerNano_create1(cv::Ptr<cv::TrackerNano>** returnValue)
+{
+    BEGIN_WRAP
+        const auto p = cv::TrackerNano::create();
+    *returnValue = clone(p);
+    END_WRAP
+}
+CVAPI(ExceptionStatus) video_TrackerNano_create2(cv::TrackerNano::Params* parameters, cv::Ptr<cv::TrackerNano>** returnValue)
+{
+    BEGIN_WRAP
+        const auto p = cv::TrackerNano::create(*parameters);
+    *returnValue = clone(p);
+    END_WRAP
+}
+
+CVAPI(ExceptionStatus) video_Ptr_TrackerNano_delete(cv::Ptr<cv::TrackerNano>* ptr)
+{
+    BEGIN_WRAP
+        delete ptr;
+    END_WRAP
+}
+
+CVAPI(ExceptionStatus) video_Ptr_TrackerNano_get(cv::Ptr<cv::TrackerNano>* ptr, cv::TrackerNano** returnValue)
+{
+    BEGIN_WRAP
+        * returnValue = ptr->get();
+    END_WRAP
+}
+#pragma endregion
+
 // TODO
 #pragma region DenseOpticalFlow
 
